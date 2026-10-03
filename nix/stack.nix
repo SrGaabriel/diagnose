@@ -1,5 +1,5 @@
 { pkgs ? import ./nixpkgs-pinned.nix
-, ghc ? pkgs.ghc
+, ghc ? pkgs.haskell.compiler.ghc9103
 }:
 
 pkgs.haskell.lib.buildStackProject {
@@ -9,5 +9,6 @@ pkgs.haskell.lib.buildStackProject {
     
   ];
 
+  extraArgs = "";
   name = "diagnose";
 }

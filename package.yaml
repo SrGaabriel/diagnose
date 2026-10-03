@@ -1,25 +1,30 @@
 name: diagnose
 version: 2.5.1
 github: "mesabloo/diagnose"
-license: BSD3
+license: BSD-3-Clause
 author: "Ghilain Bergeron"
 copyright: "2021-2022 Ghilain Bergeron"
 category: "Error Reporting"
+tested-with: GHC == 9.10.3
+
+language: GHC2024
+
+verbatim:
+  cabal-version: 3.12
 
 dependencies:
-- base >= 4.7 && < 5
-- array >= 0.5 && < 0.6
-- data-default >= 0.7 && < 1
+- base >= 4.20 && < 5
+- array >= 0.5.8 && < 0.6
+- data-default >= 0.8 && < 0.9
 - dlist >= 1.0 && < 1.1
-- hashable >= 1.3 && < 2
-- prettyprinter >= 1.7.0 && < 2
-- prettyprinter-ansi-terminal >= 1.1.2 && < 2
-- unordered-containers >= 0.2.11 && < 0.3
-- wcwidth >= 0.0.1 && <1
+- hashable >= 1.5 && < 1.6
+- prettyprinter >= 1.7.1 && < 1.8
+- prettyprinter-ansi-terminal >= 1.1.3 && < 1.2
+- unordered-containers >= 0.2.20 && < 0.3
+- wcwidth >= 0.0.2 && < 0.1
 
 default-extensions:
 - OverloadedStrings
-- LambdaCase
 - BlockArguments
 
 library:
@@ -58,18 +63,18 @@ flags:
 when:
   - condition: flag(json)
     dependencies:
-    - aeson >= 1.5 && <3
-    - bytestring >= 0.9 && < 1
+    - aeson >= 2.2 && < 2.4
+    - bytestring >= 0.12 && < 0.13
 
     cpp-options:
     - -DUSE_AESON
   - condition: flag(megaparsec-compat)
     dependencies:
-    - megaparsec >= 9.0.0
-    - containers == 0.6.*
+    - megaparsec >= 9.7 && < 9.9
+    - containers >= 0.7 && < 0.9
   - condition: flag(parsec-compat)
     dependencies:
-    - parsec >= 3.1.14
+    - parsec >= 3.1.17 && < 3.2
 
 ghc-options:
 - -Wall
@@ -99,7 +104,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - diagnose
-    - text >= 1.2 && < 3
+    - text >= 2.1 && < 2.2
     when:
      - condition: ! '!(flag(megaparsec-compat))'
        buildable: false
@@ -112,7 +117,7 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - diagnose
-    - text >= 1.2 && < 3
+    - text >= 2.1 && < 2.2
     when:
      - condition: ! '!(flag(parsec-compat))'
        buildable: false

@@ -1,6 +1,6 @@
-cabal-version: 1.12
+cabal-version: 3.12
 
--- This file has been generated from package.yaml by hpack version 0.35.2.
+-- This file has been generated from package.yaml by hpack version 0.38.3.
 --
 -- see: https://github.com/sol/hpack
 
@@ -9,7 +9,7 @@ version:        2.5.1
 synopsis:       Beautiful error reporting done easily
 description:    This package provides a simple way of getting beautiful compiler/interpreter errors
                 using a very simple interface for the programmer.
-                .
+
                 A quick tutorial is available in the module "Error.Diagnose", which goes on most of the basis
                 of how to use it.
 category:       Error Reporting
@@ -18,9 +18,11 @@ bug-reports:    https://github.com/mesabloo/diagnose/issues
 author:         Ghilain Bergeron
 maintainer:     Ghilain Bergeron
 copyright:      2021-2022 Ghilain Bergeron
-license:        BSD3
+license:        BSD-3-Clause
 license-file:   LICENSE
 build-type:     Simple
+tested-with:
+    GHC == 9.10.3
 extra-source-files:
     README.md
 
@@ -57,36 +59,37 @@ library
       Error.Diagnose.Diagnostic.Internal
       Error.Diagnose.Report.Internal
       Paths_diagnose
+  autogen-modules:
+      Paths_diagnose
   hs-source-dirs:
       src
   default-extensions:
       OverloadedStrings
-      LambdaCase
       BlockArguments
   ghc-options: -Wall -Wextra
   build-depends:
-      array ==0.5.*
-    , base >=4.7 && <5
-    , data-default >=0.7 && <1
+      array >=0.5.8 && <0.6
+    , base >=4.20 && <5
+    , data-default ==0.8.*
     , dlist ==1.0.*
-    , hashable >=1.3 && <2
-    , prettyprinter >=1.7.0 && <2
-    , prettyprinter-ansi-terminal >=1.1.2 && <2
-    , unordered-containers >=0.2.11 && <0.3
-    , wcwidth >=0.0.1 && <1
-  default-language: Haskell2010
+    , hashable ==1.5.*
+    , prettyprinter >=1.7.1 && <1.8
+    , prettyprinter-ansi-terminal >=1.1.3 && <1.2
+    , unordered-containers >=0.2.20 && <0.3
+    , wcwidth >=0.0.2 && <0.1
+  default-language: GHC2024
   if flag(json)
     cpp-options: -DUSE_AESON
     build-depends:
-        aeson >=1.5 && <3
-      , bytestring >=0.9 && <1
+        aeson >=2.2 && <2.4
+      , bytestring ==0.12.*
   if flag(megaparsec-compat)
     build-depends:
-        containers ==0.6.*
-      , megaparsec >=9.0.0
+        containers >=0.7 && <0.9
+      , megaparsec >=9.7 && <9.9
   if flag(parsec-compat)
     build-depends:
-        parsec >=3.1.14
+        parsec >=3.1.17 && <3.2
   if flag(megaparsec-compat)
     exposed-modules:
         Error.Diagnose.Compat.Megaparsec
@@ -101,38 +104,39 @@ test-suite diagnose-megaparsec-tests
       Instances
       Repro6
       Paths_diagnose
+  autogen-modules:
+      Paths_diagnose
   hs-source-dirs:
       test/megaparsec
   default-extensions:
       OverloadedStrings
-      LambdaCase
       BlockArguments
   ghc-options: -Wall -Wextra -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array ==0.5.*
-    , base >=4.7 && <5
-    , data-default >=0.7 && <1
+      array >=0.5.8 && <0.6
+    , base >=4.20 && <5
+    , data-default ==0.8.*
     , diagnose
     , dlist ==1.0.*
-    , hashable >=1.3 && <2
-    , prettyprinter >=1.7.0 && <2
-    , prettyprinter-ansi-terminal >=1.1.2 && <2
-    , text >=1.2 && <3
-    , unordered-containers >=0.2.11 && <0.3
-    , wcwidth >=0.0.1 && <1
-  default-language: Haskell2010
+    , hashable ==1.5.*
+    , prettyprinter >=1.7.1 && <1.8
+    , prettyprinter-ansi-terminal >=1.1.3 && <1.2
+    , text ==2.1.*
+    , unordered-containers >=0.2.20 && <0.3
+    , wcwidth >=0.0.2 && <0.1
+  default-language: GHC2024
   if flag(json)
     cpp-options: -DUSE_AESON
     build-depends:
-        aeson >=1.5 && <3
-      , bytestring >=0.9 && <1
+        aeson >=2.2 && <2.4
+      , bytestring ==0.12.*
   if flag(megaparsec-compat)
     build-depends:
-        containers ==0.6.*
-      , megaparsec >=9.0.0
+        containers >=0.7 && <0.9
+      , megaparsec >=9.7 && <9.9
   if flag(parsec-compat)
     build-depends:
-        parsec >=3.1.14
+        parsec >=3.1.17 && <3.2
   if !(flag(megaparsec-compat))
     buildable: False
 
@@ -142,38 +146,39 @@ test-suite diagnose-parsec-tests
   other-modules:
       Repro2
       Paths_diagnose
+  autogen-modules:
+      Paths_diagnose
   hs-source-dirs:
       test/parsec
   default-extensions:
       OverloadedStrings
-      LambdaCase
       BlockArguments
   ghc-options: -Wall -Wextra -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array ==0.5.*
-    , base >=4.7 && <5
-    , data-default >=0.7 && <1
+      array >=0.5.8 && <0.6
+    , base >=4.20 && <5
+    , data-default ==0.8.*
     , diagnose
     , dlist ==1.0.*
-    , hashable >=1.3 && <2
-    , prettyprinter >=1.7.0 && <2
-    , prettyprinter-ansi-terminal >=1.1.2 && <2
-    , text >=1.2 && <3
-    , unordered-containers >=0.2.11 && <0.3
-    , wcwidth >=0.0.1 && <1
-  default-language: Haskell2010
+    , hashable ==1.5.*
+    , prettyprinter >=1.7.1 && <1.8
+    , prettyprinter-ansi-terminal >=1.1.3 && <1.2
+    , text ==2.1.*
+    , unordered-containers >=0.2.20 && <0.3
+    , wcwidth >=0.0.2 && <0.1
+  default-language: GHC2024
   if flag(json)
     cpp-options: -DUSE_AESON
     build-depends:
-        aeson >=1.5 && <3
-      , bytestring >=0.9 && <1
+        aeson >=2.2 && <2.4
+      , bytestring ==0.12.*
   if flag(megaparsec-compat)
     build-depends:
-        containers ==0.6.*
-      , megaparsec >=9.0.0
+        containers >=0.7 && <0.9
+      , megaparsec >=9.7 && <9.9
   if flag(parsec-compat)
     build-depends:
-        parsec >=3.1.14
+        parsec >=3.1.17 && <3.2
   if !(flag(parsec-compat))
     buildable: False
 
@@ -182,34 +187,35 @@ test-suite diagnose-rendering-tests
   main-is: Spec.hs
   other-modules:
       Paths_diagnose
+  autogen-modules:
+      Paths_diagnose
   hs-source-dirs:
       test/rendering
   default-extensions:
       OverloadedStrings
-      LambdaCase
       BlockArguments
   ghc-options: -Wall -Wextra -threaded -rtsopts -with-rtsopts=-N
   build-depends:
-      array ==0.5.*
-    , base >=4.7 && <5
-    , data-default >=0.7 && <1
+      array >=0.5.8 && <0.6
+    , base >=4.20 && <5
+    , data-default ==0.8.*
     , diagnose
     , dlist ==1.0.*
-    , hashable >=1.3 && <2
-    , prettyprinter >=1.7.0 && <2
-    , prettyprinter-ansi-terminal >=1.1.2 && <2
-    , unordered-containers >=0.2.11 && <0.3
-    , wcwidth >=0.0.1 && <1
-  default-language: Haskell2010
+    , hashable ==1.5.*
+    , prettyprinter >=1.7.1 && <1.8
+    , prettyprinter-ansi-terminal >=1.1.3 && <1.2
+    , unordered-containers >=0.2.20 && <0.3
+    , wcwidth >=0.0.2 && <0.1
+  default-language: GHC2024
   if flag(json)
     cpp-options: -DUSE_AESON
     build-depends:
-        aeson >=1.5 && <3
-      , bytestring >=0.9 && <1
+        aeson >=2.2 && <2.4
+      , bytestring ==0.12.*
   if flag(megaparsec-compat)
     build-depends:
-        containers ==0.6.*
-      , megaparsec >=9.0.0
+        containers >=0.7 && <0.9
+      , megaparsec >=9.7 && <9.9
   if flag(parsec-compat)
     build-depends:
-        parsec >=3.1.14
+        parsec >=3.1.17 && <3.2

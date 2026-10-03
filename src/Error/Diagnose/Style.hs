@@ -1,5 +1,3 @@
-{-# LANGUAGE DeriveTraversable #-}
-{-# LANGUAGE DeriveGeneric #-}
 -- |
 -- Module      : Error.Diagnose.Style
 -- Description : Custom style definitions

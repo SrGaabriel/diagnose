@@ -1,4 +1,3 @@
-{-# LANGUAGE MultiParamTypeClasses #-}
 
 module Error.Diagnose.Compat.Hints where
 
