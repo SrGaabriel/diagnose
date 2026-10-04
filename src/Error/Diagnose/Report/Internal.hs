@@ -41,13 +41,15 @@ import qualified Data.List as List
 import qualified Data.List.Safe as List
 import Data.Maybe
 import Data.String (IsString (fromString))
+import Data.Text (Text)
+import qualified Data.Text as Text
 import Error.Diagnose.Position
 import Error.Diagnose.Style (Annotation (..))
 import Prettyprinter (Doc, Pretty (..), align, annotate, colon, hardline, lbracket, rbracket, space, width, (<+>), reAnnotate, SimpleDocStream (..), layoutCompact)
 import Prettyprinter.Internal (Doc (..), textSpaces)
 import Data.Bool (bool)
 
-type FileMap = HashMap FilePath (Array Int String)
+type FileMap = HashMap FilePath (Array Int Text)
 
 type WidthTable = UArray Int Int
 
@@ -500,7 +502,7 @@ getLine_ ::
   Bool ->
   (WidthTable, Doc (Annotation ann))
 getLine_ files markers line (TabSize tabSize) isError =
-  case safeArrayIndex (line - 1) =<< (HashMap.!?) files . file . fst =<< List.safeHead markers of
+  case Text.unpack <$> (safeArrayIndex (line - 1) =<< (HashMap.!?) files . file . fst =<< List.safeHead markers) of
     Nothing ->
       ( mkWidthTable "",
         annotate NoLineColor "<no line>"

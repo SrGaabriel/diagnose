@@ -122,7 +122,7 @@ import Error.Diagnose.Style as Export
 --
 --   To create a new diagnostic, you need to use its 'Data.Default.Default' instance (which exposes a 'def' function, returning a new empty 'Diagnostic').
 --   Once the 'Diagnostic' is created, you can use either 'addReport' (which takes a 'Diagnostic' and a 'Report', abstract by the same message type,
---   and returns a 'Diagnostic') to insert a new report inside the diagnostic, or 'addFile' (which takes a 'Diagnostic', a 'FilePath' and a @['String']@,
+--   and returns a 'Diagnostic') to insert a new report inside the diagnostic, or 'addFile' (which takes a 'Diagnostic', a 'FilePath' and a 'Data.Text.Text',
 --   and returns a 'Diagnostic') to insert a new file reference in the diagnostic.
 --
 --   You can then either pretty-print the diagnostic obtained (which requires all messages to be instances of the 'Prettyprinter.Pretty')

@@ -8,6 +8,7 @@ import Error.Diagnose(diagnosticToJson)
 #endif
 import Data.HashMap.Lazy (HashMap)
 import qualified Data.HashMap.Lazy as HashMap
+import Data.Text (Text)
 import Error.Diagnose
   ( Marker (..),
     Note (..),
@@ -31,7 +32,7 @@ import Data.Functor.Compose (Compose(..))
 
 main :: IO ()
 main = do
-  let files :: HashMap FilePath String =
+  let files :: HashMap FilePath Text =
         HashMap.fromList
           [ ("test.zc", "let id<a>(x : a) : a := x + 1\nrec fix(f) := f(fix(f))\nlet const<a, b>(x : a, y : b) : a := x"),
             ("somefile.zc", "let id<a>(x : a) : a := x\n  + 1"),

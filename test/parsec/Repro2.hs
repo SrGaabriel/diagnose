@@ -2,6 +2,7 @@
 
 module Repro2 where
 
+import Data.Text (Text)
 import Data.Void
 import Error.Diagnose
 import Error.Diagnose.Compat.Parsec
@@ -10,9 +11,9 @@ import Text.Parsec.Token
 
 instance HasHints Void String where hints _ = mempty
 
-type Parser = Parsec String ()
+type Parser = Parsec Text ()
 
-diagParse :: Parser a -> SourceName -> String -> Either (Diagnostic String) a
+diagParse :: Parser a -> SourceName -> Text -> Either (Diagnostic String) a
 diagParse p filename content =
   either (Left . diag) Right (parse p filename content)
   where

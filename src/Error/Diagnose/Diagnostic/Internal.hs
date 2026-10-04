@@ -26,6 +26,8 @@ import qualified Data.DList as DL
 import Data.Foldable (fold, toList)
 import qualified Data.HashMap.Lazy as HashMap
 import Data.List (intersperse)
+import Data.Text (Text)
+import qualified Data.Text as Text
 import Error.Diagnose.Report (Report)
 import Error.Diagnose.Report.Internal (FileMap, errorToWarning, prettyReport, warningToError, WithUnicode(..), TabSize(..))
 import Error.Diagnose.Style (Annotation, Style)
@@ -166,11 +168,11 @@ addFile ::
   Diagnostic msg ->
   -- | The path to the file.
   FilePath ->
-  -- | The content of the file as a single string, where lines are ended by @\\n@.
-  String ->
+  -- | The content of the file, where lines are ended by @\\n@.
+  Text ->
   Diagnostic msg
 addFile (Diagnostic reports files) path content =
-  let fileLines = lines content
+  let fileLines = Text.lines content
       lineCount = length fileLines
       lineArray = listArray (0, lineCount - 1) fileLines
    in Diagnostic reports (HashMap.insert path lineArray files)

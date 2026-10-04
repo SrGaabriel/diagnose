@@ -8,7 +8,6 @@ module Repro6 where
 import Data.Bifunctor (first)
 import Data.Char (isAlpha)
 import Data.Text (Text)
-import qualified Data.Text as Text (unpack)
 import Data.Void (Void)
 import Error.Diagnose
 import Error.Diagnose.Compat.Megaparsec
@@ -39,12 +38,12 @@ main = do
                 content3
 
   case res1 of
-    Left diag -> printDiagnostic stdout WithUnicode (TabSize 4) defaultStyle (addFile diag filename (Text.unpack content1) :: Diagnostic String)
+    Left diag -> printDiagnostic stdout WithUnicode (TabSize 4) defaultStyle (addFile diag filename content1 :: Diagnostic String)
     Right res -> print res
   case res2 of
-    Left diag -> printDiagnostic stdout WithUnicode (TabSize 4) defaultStyle (addFile diag filename (Text.unpack content2) :: Diagnostic String)
+    Left diag -> printDiagnostic stdout WithUnicode (TabSize 4) defaultStyle (addFile diag filename content2 :: Diagnostic String)
     Right res -> print res
   putStrLn "------------- res3 ----------------"
   case res3 of
-    Left diag -> printDiagnostic stdout WithUnicode (TabSize 4) defaultStyle (addFile diag filename (Text.unpack content3) :: Diagnostic String)
+    Left diag -> printDiagnostic stdout WithUnicode (TabSize 4) defaultStyle (addFile diag filename content3 :: Diagnostic String)
     Right res -> print res
